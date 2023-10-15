@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="myClass" class="com.hyd.MyClass"/>
+
+<!--   UserService对象-->
+<bean id="userService" class="com.hyd.service.impl.UserServiceImpl">
+    <!-- property给属性赋值   -->
+    <property name="userDao" ref="userDao"/>
+</bean>
+    <!--   UserDao对象-->
+<bean id="userDao" class="com.hyd.dao.impl.UserDaoImpl"/>
+<bean id="testModel" class="com.hyd.di.TestModel">
+    <!-- set方式赋值,使用property标签 -->
+    <!-- name是属性名,基本类型使用value赋值 -->
+    <!-- 引用类型赋值用ref -->
+    <property name="id" value="1"/>
+    <property name="money" value="9999.9"/>
+    <property name="age" value="18"/> <!-- 包装类也使用value赋值 -->
+    <property name="name" value="理想"/> <!-- String使用value赋值 -->
+    <property name="birthday" value="2000/01/01"/> <!-- 日期使用value,其模板yyyy/MM/dd -->
+
+    <property name="skill">
+        <array> <!-- 数组赋值使用array标签 -->
+            <value>Java</value>
+            <value>H5</value>
+            <value>Linux</value>
+        </array>
+    </property>
+
+    <property name="className">
+        <list><!-- list赋值使用 -->
+            <value>JavaEE2217</value>
+            <value>JavaEE2217</value>
+            <value>JavaEE2215</value>
+            <value>JavaEE2212</value>
+        </list>
+    </property>
+
+    <property name="phones">
+        <set> <!-- set集合赋值 -->
+            <value>110</value>
+            <value>110</value>
+            <value>120</value>
+            <value>119</value>
+        </set>
+    </property>
+
+    <property name="np">
+        <map> <!-- map属性赋值 -->
+            <entry key="Henan" value="河南"/>
+            <entry key="Beijing" value="北京"/>
+            <entry key="Hangzhou" value="杭州"/>
+        </map>
+    </property>
+
+</bean>
+
+<bean id="testModel2" class="com.hyd.di.TestModel2">
+    <!-- constructor-arg:代表构造器的一个参数 -->
+    <!-- index:参数的下标,type: 参数类型, name: 参数名 -->
+    <!-- 以上三个是确定给哪个参数辅助,不用同时使用 -->
+    <constructor-arg name="id" value="28"/>
+    <constructor-arg name="name" value="杰克"/>
+</bean>
+
+</beans>
